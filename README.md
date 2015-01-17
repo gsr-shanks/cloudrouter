@@ -1,1 +1,1 @@
-# cloudrouter
+The CloudRouter Project is a collaborative open source project focused on bringing simplicity to network interconnection, a traditionally complex process. With the growing proliferation of performance and security issues occurring over the public Internet, there is an increasing demand for secure, direct network-to-network interconnection, including Enterprise to Cloud.  The CloudRouter community is developing and maintaining an open source software distribution of networking technologies.
