@@ -11,7 +11,6 @@ Source0:        https://cloudrouter.org/repo/RPM-GPG-KEY-CLOUDROUTER
 Source1:        cloudrouter.repo
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
-Requires:       java-1.8.0-openjdk-devel >= 1.8.0
 %description
 This packages the CloudRouter repository GPG key as well as configuration for yum.
 
@@ -49,7 +48,7 @@ sed -i 's/CloudRouter 1.0 Beta based on Fedora/Fedora/' /etc/issue
 /etc/pki/rpm-gpg/*
 
 %changelog
-* Sat Jan 17 2015 David Jorm - 1-1
-- Added openjdk-devel dependency, update issue file
+* Tue Jan 20 2015 David Jorm - 1-1
+- Update issue file
 * Fri Jan 16 2015 David Jorm - 1-0
 - Initial package

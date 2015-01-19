@@ -1,7 +1,7 @@
 Summary: OpenDaylight Controller
 Name: opendaylight
 Version: helium
-Release: 0
+Release: 1
 Source0: https://cloudrouter.org/repo/beta/src/opendaylight-helium.zip
  
 License: EPL-1.0
@@ -9,7 +9,8 @@ Group: Applications/System
  
 ExclusiveArch: x86_64
 BuildRoot: %{_tmppath}/%{name}-buildroot
- 
+Requires: java-1.7.0-openjdk-devel >= 1.7.0
+
 # disable debug packages and the stripping of the binaries
 %global _enable_debug_package 0
 %global debug_package %{nil}
@@ -40,5 +41,7 @@ echo "OpenDaylight Helium successfully installed"
 /opt/%{name}/*
  
 %changelog
+* Tue Jan 20 2015 David Jrom - helium-1
+- Added openjdk-devel dependency
 * Fri Jan 16 2015 David Jorm - helium-0
 - Initial creation
