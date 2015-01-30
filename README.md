@@ -92,4 +92,4 @@ For more information on the CloudRouter project, visit [CloudRouter.org](https:/
 
 ---
 
-*Copyright © 2015 IIX, Inc. and others. All Rights Reserved. The CloudRouter Project is maintained and driven by the community and sponsored by IIX. This is a community maintained site. IIX is not responsible for content.*
+*CloudRouter is a registered trademark of IIX Inc. All rights reserved. IIX has granted a non-exclusive license for the use of this trademark to the CloudRouter project.*
