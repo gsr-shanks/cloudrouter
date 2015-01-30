@@ -92,4 +92,4 @@ For more information on the CloudRouter project, visit [CloudRouter.org](https:/
 
 ---
 
-*CloudRouter is a registered trademark of IIX Inc. All rights reserved. IIX has granted a non-exclusive license for the use of this trademark to the CloudRouter project.*
+*CloudRouter is a registered trademark of IIX Inc. All rights reserved. IIX has granted a non-exclusive license for the use of this trademark to the CloudRouter Project.*
