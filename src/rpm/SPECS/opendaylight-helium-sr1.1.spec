@@ -1,7 +1,7 @@
 Summary: OpenDaylight Controller
 Name: opendaylight
 Version: helium
-Release: 1
+Release: 2
 Source0: https://cloudrouter.org/repo/beta/src/opendaylight-helium.zip
  
 License: EPL-1.0
@@ -41,7 +41,9 @@ echo "OpenDaylight Helium successfully installed"
 /opt/%{name}/*
  
 %changelog
-* Tue Jan 20 2015 David Jrom - helium-1
+* Sun Feb 01 2015 David Jorm - helium-2
+- Upgraded to helium SR2
+* Tue Jan 20 2015 David Jorm - helium-1
 - Added openjdk-devel dependency
 * Fri Jan 16 2015 David Jorm - helium-0
 - Initial creation
