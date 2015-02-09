@@ -12,8 +12,15 @@ fi
 if [ -f /tmp/cloudrouter-build.raw ]; then
 	rm -f /tmp/cloudrouter-build.raw
 fi
-cp Fedora-x86_64-20-20131211.1-sda.raw /tmp/cloudrouter-build.raw
-chmod 777 /tmp/cloudrouter-build.raw
+cp Fedora-x86_64-20-20131211.1-sda.raw /tmp/cloudrouter-build-tmp.raw
+chmod 777 /tmp/cloudrouter-build-tmp.raw
+
+# Resize the image (+1 GB)
+
+truncate -r /tmp/cloudrouter-build-tmp.raw /tmp/cloudrouter-build.raw
+truncate -s +1G /tmp/cloudrouter-build.raw
+virt-resize --expand /dev/sda1 /tmp/cloudrouter-build-tmp.raw /tmp/cloudrouter-build.raw
+rm -f /tmp/cloudrouter-build-tmp.raw 
 
 # Use virt-edit to add the no_timer_check kernel parameter. This is necessary for the image to load under pure QEMU (no KVM).
 
@@ -44,7 +51,12 @@ rm -f ~/.ssh/known_hosts
 
 # SSH to the VM using the "build" password and install repos/packages. As a last step, clear the cloud-init config in /var/lib/cloud/instances
 
-sshpass -p 'build' ssh -o StrictHostKeyChecking=no fedora@$IP_ADDR -t 'cd /tmp ; sudo yum install -y wget ; wget https://cloudrouter.org/repo/beta/x86_64/cloudrouter-release-1-1.noarch.rpm ; ls -la cloudrouter-release-1-1.noarch.rpm ; sudo yum localinstall -y cloudrouter-release-1-1.noarch.rpm ; sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CLOUDROUTER ; sudo yum install -y opendaylight bird quagga dpdk; sudo yum update -y ; sudo rm -rf /var/lib/cloud/instances'
+sshpass -p 'build' ssh -o StrictHostKeyChecking=no fedora@$IP_ADDR -t 'cd /tmp ; sudo yum install -y wget ; wget https://cloudrouter.org/repo/beta/x86_64/cloudrouter-release-1-1.noarch.rpm ; ls -la cloudrouter-release-1-1.noarch.rpm ; sudo yum localinstall -y cloudrouter-release-1-1.noarch.rpm ; sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CLOUDROUTER ; sudo yum -y remove docker ; sudo yum install -y opendaylight bird quagga dpdk docker-io; sudo yum update -y ; rpm -qa | sort > /tmp/manifest.txt ; sudo rm -rf /var/lib/cloud/instances'
+
+# Grab the manifest file, then remove it from the VM
+
+sshpass -p 'build' scp fedora@$IP_ADDR:/tmp/manifest.txt /tmp/manifest.txt
+sshpass -p 'build' ssh -o StrictHostKeyChecking=no fedora@$IP_ADDR -t 'rm -f /tmp/manifest'
 
 # Shutdown VM and cleanup
 
