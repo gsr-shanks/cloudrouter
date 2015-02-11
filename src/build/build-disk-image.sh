@@ -56,7 +56,7 @@ sshpass -p 'build' ssh -o StrictHostKeyChecking=no fedora@$IP_ADDR -t 'cd /tmp ;
 # Grab the manifest file, then remove it from the VM
 
 sshpass -p 'build' scp fedora@$IP_ADDR:/tmp/manifest.txt /tmp/manifest.txt
-sshpass -p 'build' ssh -o StrictHostKeyChecking=no fedora@$IP_ADDR -t 'rm -f /tmp/manifest'
+sshpass -p 'build' ssh -o StrictHostKeyChecking=no fedora@$IP_ADDR -t 'rm -f /tmp/manifest ; yum clean all'
 
 # Shutdown VM and cleanup
 
