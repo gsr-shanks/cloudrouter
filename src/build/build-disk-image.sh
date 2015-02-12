@@ -51,7 +51,7 @@ rm -f ~/.ssh/known_hosts
 
 # SSH to the VM using the "build" password and install repos/packages. As a last step, clear the cloud-init config in /var/lib/cloud/instances
 
-sshpass -p 'build' ssh -o StrictHostKeyChecking=no fedora@$IP_ADDR -t 'cd /tmp ; sudo yum install -y wget ; wget https://cloudrouter.org/repo/beta/x86_64/cloudrouter-release-1-1.noarch.rpm ; ls -la cloudrouter-release-1-1.noarch.rpm ; sudo yum localinstall -y cloudrouter-release-1-1.noarch.rpm ; sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CLOUDROUTER ; sudo yum -y remove docker ; sudo yum install -y opendaylight bird quagga dpdk docker-io; sudo yum update -y ; rpm -qa | sort > /tmp/manifest.txt ; sudo rm -rf /var/lib/cloud/instances'
+sshpass -p 'build' ssh -o StrictHostKeyChecking=no fedora@$IP_ADDR -t 'cd /tmp ; sudo yum install -y wget ; wget https://cloudrouter.org/repo/beta/x86_64/cloudrouter-release-1-1.noarch.rpm ; ls -la cloudrouter-release-1-1.noarch.rpm ; sudo yum localinstall -y cloudrouter-release-1-1.noarch.rpm ; sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CLOUDROUTER ; sudo yum -y remove docker ; sudo yum install -y opendaylight bird quagga dpdk docker-io firewalld bind dnsmasq ipsec-tools xl2tpd; sudo yum update -y ; rpm -qa | sort > /tmp/manifest.txt ; sudo rm -rf /var/lib/cloud/instances'
 
 # Grab the manifest file, then remove it from the VM
 
